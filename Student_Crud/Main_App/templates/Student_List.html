@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Student Details List </title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{% url 'insert_form' %}"><button class="btn btn-success pull-right"> Add Student </button></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"> Sl. No </th>
+                        <th scope="col"> Student Roll No </th>
+                        <th scope="col"> Student Name </th>
+                        <th scope="col"> Age </th>
+                        <th scope="col"> City </th>
+                        <th scope="col"> Action </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for val in table_values %}
+                    <tr>
+                        <td> {{ val.id }} </td>
+                        <td> {{ val.roll_no }} </td>
+                        <td> {{ val.name }} </td>
+                        <td> {{ val.age }} </td>
+                        <td> {{ val.city }} </td>
+                        <td>
+                            <a href="{% url 'edit' val.id %}"><button type="button" class="btn-primary btn-sm"> Edit </button></a>
+                            <a href="{% url 'delete' val.id %}"><button type="button" class="btn-primary btn-sm"> Delete </button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+<html>
+    <head>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        {% load static %}
+        {% block head %}
+        {% endblock %}
+        <link rel="stylesheet" href="{% static 'Form.css' %}">
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+        <div class="container user_section">
+            <div class="row">
+                <div class="col-md-10">
+                    <p> {{ user.username }}</p>
+                </div>
+                <div class="col-md-2">
+                    <a href="{% url 'logout' %}"><button class="btn btn-sm btn-info"> Logout </button></a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

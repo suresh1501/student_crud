@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block head %}
+<title> Student Details Form </title>
+<link rel="stylesheet" href="{% static 'Form.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+<div class="container add_form">
+    <div class="col-md-12">
+        {% if id == None %}
+        <form method="post" action="{% url 'insert_db' %}">
+            {% else %}
+            <form method="post" action="{% url 'edit' id %}">
+                {% endif %}
+                {% csrf_token %}
+                <div>
+                    <p class="font-weight-bold text-center"><b> {% if not id %} Add {% else %} Edit {% endif %} Student </b></p>
+                </div>
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-info"> Submit </button>
+            </form>
+    </div>
+</div>
+
+{% endblock %}
